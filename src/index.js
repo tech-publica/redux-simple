@@ -1,13 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from "react-redux";
+import store from "./store";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+import Details from './Details';
+import SearchParams from './SearchParams';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+    <BrowserRouter>
+    <Routes>
+     <Route path="/" element={<App />} >
+        <Route path="/" element={<SearchParams />} />
+        <Route path="details/:id" element={<Details />} />
+     </Route>
+    </Routes>
+    </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
 
